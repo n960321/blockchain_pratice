@@ -66,7 +66,6 @@ func (p *ProofOfWork) Run() (int, []byte) {
 	}
 	fmt.Println()
 	return nonce, hash[:]
-
 }
 
 func (p *ProofOfWork) Validate() bool {
