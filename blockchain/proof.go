@@ -55,7 +55,7 @@ func (p *ProofOfWork) Run() (int, []byte) {
 	nonce := 0
 	for nonce < math.MaxInt64 {
 		data := p.InitData(nonce)
-		hash := sha256.Sum256(data)
+		hash = sha256.Sum256(data)
 		fmt.Printf("\r%x", hash)
 		intHash.SetBytes(hash[:])
 		if intHash.Cmp(p.Target) == -1 {
