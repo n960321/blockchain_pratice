@@ -13,17 +13,6 @@ type Transaction struct {
 	Outputs []TxOutput
 }
 
-type TxInput struct {
-	ID  []byte
-	Out int
-	Sig string
-}
-
-type TxOutput struct {
-	Value  int
-	PubKey string
-}
-
 func (tx *Transaction) SetID() {
 	var (
 		encoded bytes.Buffer
@@ -62,14 +51,6 @@ func CoinbaseTX(to, data string) *Transaction {
 	return &tx
 }
 
-func (o *TxOutput) CanBeUnlocked(address string) bool {
-	return o.PubKey == address
-}
-
 func (tx *Transaction) IsCoinbase() bool {
 	return len(tx.Inputs) == 1 && len(tx.Inputs[0].ID) == 0 && tx.Inputs[0].Out == -1
-}
-
-func (i *TxInput) CanUnlock(address string) bool {
-	return i.Sig == address
 }
